@@ -1,0 +1,6 @@
+#### Ejecutar migraciones 
+
+### `` npx sequelize-cli db:migrate ### `
+
+### Ejecutar Seeders
+ ``npx sequelize-cli db:seed:all``
