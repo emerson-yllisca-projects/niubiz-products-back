@@ -1,9 +1,8 @@
 const Boom = require('@hapi/boom');
-const { users } = require('../db/models/');
-const { createUserProfile  } = require('../services/user.services');  
-const { encryptString  } = require('../utils/strings');
-const {  successResponse } = require('../utils/response');
-const { validateEmial } = require('../utils/strings')
+const { users } = require('../../db/models');
+const { createUserProfile  } = require('../../services/user.services');  
+const {  successResponse } = require('../../utils/response');
+const { validateEmial, encryptString } = require('../../utils/strings')
 
 const create  = async ( req , res , next ) => {
 

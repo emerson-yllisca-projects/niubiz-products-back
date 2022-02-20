@@ -8,7 +8,7 @@ const cors = require('cors');
 const path = require('path');
 const moment = require('moment-timezone');
 moment.locale('es');
-moment.tz.setDefault('America/Lima')
+moment.tz.setDefault(process.env.TZ);
 
 const { errorHandler , wrapErrors } = require('./middlewares/errorHandling')
 const routes = require('./routes/index.routes')
@@ -24,8 +24,5 @@ const app = express();
     .use('/api/v1' , routes)
     .use(wrapErrors)
     .use(errorHandler)
-    
-// app.set('trust proxy', true);
-
 
 module.exports = app;

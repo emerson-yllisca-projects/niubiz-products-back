@@ -9,8 +9,11 @@ const NIUBIZ_URLS = {
     session_token:'/api.ecommerce/v2/ecommerce/token/session'
 }
 
+const TYPES_ENVIROMENT= ['development','production'];
+
 module.exports = {
     EMAIL_EXPRESION_REGEX,
     MAIL_SUBJECT,
-    NIUBIZ_URLS
+    NIUBIZ_URLS,
+    TYPES_ENVIROMENT
 }

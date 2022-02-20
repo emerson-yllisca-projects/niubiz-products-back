@@ -1,5 +1,5 @@
-const { successResponse  } = require('../utils/response')
-const { generateAccessToken, generateSessionToken } = require('../helpers/niubiz')
+const { successResponse  } = require('../../utils/response')
+const { generateAccessToken, generateSessionToken } = require('../../helpers/niubiz')
 
 const createTokenAccess = async (req, res , next ) => {
 
@@ -24,10 +24,10 @@ const createSessionToken = async ( req , res , next ) => {
     const { merchantId  } = req.params;
     const { accesstoken } = req.headers;
     const { channel , amount , type  } = req.body;
-    const ip = (req.headers['x-real-ip'] || req.connection.remoteAddress).split(':')[3].trim();
-
-    try {
     
+    try {
+        
+        const ip = (req.headers['x-real-ip'] || req.connection.remoteAddress).split(':')[3].trim();
         const body = {
             "channel":channel,
             "amount":amount,

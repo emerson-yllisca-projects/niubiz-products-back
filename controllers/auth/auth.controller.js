@@ -1,13 +1,13 @@
 
 const Boom = require('@hapi/boom')
 // Modelo de usuario
-const { users } = require('../db/models');  
-const { successResponse  } = require('../utils/response')
-const { validPassword } = require('../utils/strings')
-const { sendMail , buildMailToken } = require('../utils/mail')
-const { MAIL_SUBJECT } = require('../constants');
-const { updateAccessToken , getLatestHistory  } = require('../services/auth.service')
-const { generarJWT } = require('../helpers/auth')
+const { users } = require('../../db/models');  
+const { successResponse  } = require('../../utils/response')
+const { validPassword } = require('../../utils/strings')
+const { sendMail , buildMailToken } = require('../../utils/mail')
+const { MAIL_SUBJECT } = require('../../constants');
+const { updateAccessToken , getLatestHistory  } = require('../../services/auth.service')
+const { generarJWT } = require('../../helpers/auth')
 
 const login = async (req, res , next) => {
     
@@ -90,8 +90,6 @@ const verifyToken = async (req, res , next) => {
             },
             token
         })
-
-        
 
     } catch (error) {
         next(error);
