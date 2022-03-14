@@ -12,7 +12,6 @@ const generarJWT = (uid) => {
             expiresIn: '3h'
         }, (err, token) => {
             if (err) {
-                console.log(err);
                 reject(err);
             } else {
                 resolve(token)

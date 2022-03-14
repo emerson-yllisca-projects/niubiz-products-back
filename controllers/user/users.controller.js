@@ -40,8 +40,10 @@ const create  = async ( req , res , next ) => {
             const { data }  = profilesUsers;
 
             return successResponse(res, {
+                message:'Usuario creado con exito',
                 user:data.user, 
             });
+            
         } else {
             throwError(message, profilesUsers.message)
         }

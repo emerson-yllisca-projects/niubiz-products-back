@@ -1,24 +1,14 @@
-const { Router} = require('express');
-const { check } = require('express-validator');
+const { Router } = require('express');
 const { validarCampos } = require('../middlewares/valida-campos')
 
+// Controllers
 const auth = require('../controllers/auth/auth.controller');
+const authSchema = require('../controllers/auth/auth.schema');
+
 const router = Router();
-
 //login
-router.post('/', [
-    check('email', 'El email es requerido').not().isEmpty(),
-    check('email', 'El email es invalido').isEmail(),
-    check('password', 'El password es requerido').not().isEmpty(),
-    validarCampos
-] , auth.login ); 
-
+router.post('/', [ authSchema.loginSchema, validarCampos ] , auth.login ); 
 // Verify token after login
-router.post('/verify-token', [
-    check('email', 'El email es requerido').not().isEmpty(),
-    check('email', 'El email es invalido').isEmail(),
-    check('access_id', 'El access_id es requerido').not().isEmpty(),
-    validarCampos
-] , auth.verifyToken );
+router.post('/verify-token', [ authSchema.verifyTokenSchema, validarCampos ] , auth.verifyToken );
 
 module.exports = router;

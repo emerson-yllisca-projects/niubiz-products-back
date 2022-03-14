@@ -26,7 +26,6 @@ const formatError = ({ message, ...err }, stack, data = {} ) => {
 const wrapErrors = async ( err, req, res, next ) => {
 
     if (process.env.LOG_FUL_ERRORS) {
-
         if (err?.output?.payload) {
             const {
                 output: {
@@ -56,8 +55,6 @@ const wrapErrors = async ( err, req, res, next ) => {
                 },
             })
         }
-        console.log(err)
-
     }
 
     if (err.name === `UnauthorizedError`) {

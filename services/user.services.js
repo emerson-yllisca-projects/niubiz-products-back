@@ -12,7 +12,7 @@ const createUserProfile = async ( userId , profilesIds ) => {
         });
 
         if(!userExist){
-            throwError(message, `El usuario no existe`)
+            throwError(`El usuario no existe`)
         } 
         
         const profilesExist = await profiles.findAll({
@@ -62,7 +62,7 @@ const createUserProfile = async ( userId , profilesIds ) => {
         };
         
     } catch (error) {
-        throwError(message, `Error al asignar los perfiles  al usuario`)
+        throwError(`Error al asignar los perfiles  al usuario`)
     }
 }
 
@@ -77,7 +77,7 @@ const getUserProfile = async ( userId ) => {
         });
 
         if(!userExist){
-            throwError(message, `El usuario no existe`)
+            throwError(`El usuario no existe`)
         } 
         
         const profilesExist = await profileUsers.findAll({
@@ -103,7 +103,7 @@ const getUserProfile = async ( userId ) => {
 
         return  {
             ok: true,
-            message: 'Perfiles creados correctamente',
+            message: 'Perfiles obtenidos correctamente',
             data:{
                 user: {
                     id: userExist.id,
@@ -116,7 +116,7 @@ const getUserProfile = async ( userId ) => {
         };
         
     } catch (error) {
-        throwError(message, `Error al recuperar los perfiles del usuario`)
+        throwError(`Error al recuperar los perfiles del usuario`)
     }
 
 }

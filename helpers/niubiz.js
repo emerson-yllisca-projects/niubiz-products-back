@@ -28,9 +28,9 @@ const generateAccessToken = async ( type = 'development' , username , password )
             'Authorization': authorization
         };
 
-        const { data }= await axios.get(url, { headers });
+        const { data } = await axios.get(url, { headers });
 
-        return data
+        return data;
         
     } catch (error) {
         throw Boom.badRequest(error.response.data)

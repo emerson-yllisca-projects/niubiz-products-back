@@ -1,11 +1,13 @@
 
 const Boom = require('@hapi/boom')
-// Modelo de usuario
+
+const { MAIL_SUBJECT } = require('../../constants');
 const { users } = require('../../db/models');  
+
+// Modelo de usuario
 const { successResponse  } = require('../../utils/response')
 const { validPassword } = require('../../utils/strings')
 const { sendMail , buildMailToken } = require('../../utils/mail')
-const { MAIL_SUBJECT } = require('../../constants');
 const { updateAccessToken , getLatestHistory  } = require('../../services/auth.service')
 const { generarJWT } = require('../../helpers/auth')
 
