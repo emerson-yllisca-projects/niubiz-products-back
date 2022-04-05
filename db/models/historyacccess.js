@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
   historyAcccess.init({
     usuario_id: DataTypes.INTEGER,
     token: DataTypes.STRING,
+    estado: DataTypes.INTEGER,
     fecha: DataTypes.DATE
   }, {
     sequelize,

@@ -7,7 +7,7 @@ const pagoWebSchema  = require('../controllers/pagoWeb/pago.web.schema')
 const router = Router();
 
 // create a new access token 
-router.get('/access-token' ,[ pagoWebSchema.accessTokenSchema ,validarCampos ],createTokenAccess);
+router.post('/access-token' ,[ pagoWebSchema.accessTokenSchema ,validarCampos ],createTokenAccess);
 
 // create a new session token of access token
 router.post('/session-token/:merchantId' ,[ pagoWebSchema.createSessionTokenSchema , validarCampos  ],createSessionToken);

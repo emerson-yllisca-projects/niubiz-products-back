@@ -17,12 +17,15 @@ const updateAccessToken = async (userId , accessToken) => {
         let history = null;
 
         if(!previous_history){
-                
+
+            const current_date = momment().format('YYYY-MM-DD HH:mm:ss');
+            
             history =  await historyAcccess.create({
                 usuario_id: userId,
                 token: accessToken,
-                fecha:momment().format('YYYY-MM-DD HH:mm:ss')
+                fecha:current_date,
             })
+            
         }
 
         return history;
@@ -41,10 +44,24 @@ const getLatestHistory = async (userId) => {
                 usuario_id: userId,
                 fecha:{
                     [Op.lte]:momment().format('YYYY-MM-DD HH:mm:ss'),
-                    [Op.gte]:momment().subtract(2, 'minute').format('YYYY-MM-DD HH:mm:ss')
-                }
+                    [Op.gte]:momment().subtract(4, 'minute').format('YYYY-MM-DD HH:mm:ss')
+                },
+                estado:1
             }
         });
+
+        if(previous_history){
+            // update status to 0
+
+            await historyAcccess.update({
+                estado:0
+            },{
+                where:{
+                    id:previous_history.id
+                }
+            })
+            
+        }
 
         return previous_history;
 

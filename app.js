@@ -1,5 +1,6 @@
 require('moment/locale/es');
 require('dotenv').config();
+const jwt = require('express-jwt');
 const path = require('path');
 const express = require('express');
 const helmet = require('helmet');
@@ -15,16 +16,25 @@ const { errorHandler , wrapErrors } = require('./middlewares/errorHandling')
 const routes = require('./routes/index.routes')
 
 const app = express();
+
+const unsecuredRoutes = [
+    `/api/v1/auth`,
+    `/api/v1/auth/verify-token`,
+    /\/public*/,
+    `/api/v1`,
+]
+
+/*
+app.use(
+    jwt({ secret: process.env.JWT_SECRET, algorithms: [`HS256`] }).unless({
+        path: unsecuredRoutes,
+    }),
+)*/
+
     app
     .use(cors())
     .use(morgan('dev'))
-    .use(helmet({
-        contentSecurityPolicy: false,
-        frameguard: false,
-        ieNoOpen: false,
-        noSniff: false,
-        xssFilter: false
-    }))
+    .use(helmet())
     .use(express.json())
     .use(express.urlencoded({ extended: true }))
     .use(cookieParser())

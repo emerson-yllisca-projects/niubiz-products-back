@@ -3,24 +3,23 @@ const axios = require('axios');
 
 const { NIUBIZ_URLS  } = require('../constants');
 
-const generateAccessToken = async ( type = 'development' , username , password ) => {
+const generateAccessToken = async ( type , username , password ) => {
 
     try {
 
         const { session_access_token  } = NIUBIZ_URLS;
         
-        let url = `${process.env.NIUBIZ_API_URL_TEST}${session_access_token}`;
-        let username_ = process.env.NIUBIZ_USERNAME;
-        let password_ =  process.env.NIUBIZ_PASSWORD;
-        let encodedBase64Token = Buffer.from(`${username_}:${password_}`).toString('base64');
-
+        let url = ``;
+        
         if ( type === 'producttion' ) {
             url = `${process.env.NIUBIZ_API_URL_PRODUCTION}${session_access_token}`;
-            username_ = username;
-            password_ = password;
-            encodedBase64Token = Buffer.from(`${username_}:${password_}`).toString('base64');
+        }else{
+            url = `${process.env.NIUBIZ_API_URL_TEST}${session_access_token}`;
         }
 
+        const username_ = username;
+        const password_ = password;
+        const encodedBase64Token = Buffer.from(`${username_}:${password_}`).toString('base64');
         const authorization = `Basic ${encodedBase64Token}`;
 
         const headers = {

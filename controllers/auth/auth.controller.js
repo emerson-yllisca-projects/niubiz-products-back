@@ -44,7 +44,11 @@ const login = async (req, res , next) => {
 
         return successResponse(res, {
             message: 'Login exitoso',
-            history_acess:history_access
+            history_acess:{
+                date: history_access.fecha,
+                id: history_access.id,
+                usuario_id: history_access.usuario_id
+            }
         })
 
     } catch (error) {
@@ -52,30 +56,30 @@ const login = async (req, res , next) => {
     }
 }
 
-const verifyToken = async (req, res , next) => {
+const  verifyToken  = async (req, res, next) => {
 
     try {
 
-        const { access_id , email } = req.body;
+        const { access_id, email } = req.body;
 
         const user = await users.findOne({
-            attributes: ['id', 'name','lastnames', 'email', 'createdAt'],
+            attributes: ['id', 'name', 'lastnames', 'email', 'createdAt'],
             where: {
                 email
             }
         });
-        
-        if(!user){
+
+        if (!user) {
             throw Boom.badRequest('Usuario no encontrado');
         }
 
         const history_access = await getLatestHistory(user.id);
 
-        if(!history_access || history_access ==  null){
+        if (!history_access || history_access == null) {
             throw Boom.badRequest('El usuario no tiene un token activo');
         }
 
-        if(history_access.token != access_id){
+        if (history_access.token != access_id) {
             throw Boom.badRequest('El token no es valido');
         }
 
@@ -83,7 +87,7 @@ const verifyToken = async (req, res , next) => {
 
         return successResponse(res, {
             message: 'Verificación exitosa',
-            user:{
+            user: {
                 id: user.id,
                 name: user.name,
                 lastnames: user.lastnames,
@@ -91,7 +95,7 @@ const verifyToken = async (req, res , next) => {
                 createdAt: user.createdAt
             },
             token
-        })
+        });
 
     } catch (error) {
         next(error);

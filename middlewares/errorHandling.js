@@ -44,16 +44,6 @@ const wrapErrors = async ( err, req, res, next ) => {
                 payload += `${key}: ${req.body[key]}\n`
             })
     
-            await Generic.create({
-                Model: Log,
-                item: {
-                    error: errorName,
-                    statusError,
-                    message,
-                    payload,
-                    date: new Date(),
-                },
-            })
         }
     }
 

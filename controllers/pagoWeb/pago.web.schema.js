@@ -9,12 +9,11 @@ const accessTokenSchema = checkSchema({
         errorMessage: 'El type es requerido y debe ser un string',
     },
 
-    type:{
+   /* type:{
         in: ['body'],
         isIn: [TYPES_ENVIROMENT],
-        optional: true,
         errorMessage: 'El type debe ser uno de los siguientes valores: '+TYPES_ENVIROMENT.join(', '),
-    },
+    },*/
 
     username: {
         in: ['body'],

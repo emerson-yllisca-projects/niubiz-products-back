@@ -18,6 +18,10 @@ module.exports = {
       token: {
         type: Sequelize.STRING
       },
+      estado:{
+        type: Sequelize.INTEGER,
+        defaultValue: 1
+      },
       fecha: {
         type: Sequelize.DATE
       },
